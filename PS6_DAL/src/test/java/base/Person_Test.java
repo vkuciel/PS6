@@ -3,6 +3,7 @@ package base;
 import static org.junit.Assert.*;
 
 import java.util.Date;
+import java.util.UUID;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -44,5 +45,37 @@ public class Person_Test {
 		
 		
 	}
+	@Test
+	public void AddPersonTest() {
+		PersonDomainModel per1 = new PersonDomainModel();
+		PersonDAL.addPerson(per1);
+		PersonDomainModel per2 = PersonDAL.getPerson(per1.getPersonID());
+		assertEquals(per1.getPersonID(), per2.getPersonID());
+	}
+	@Test
+	public void GetPersontest() {
+		PersonDomainModel per1 = new PersonDomainModel();
+		String n = per1.getLastName();
+		assertEquals("Name", n);
+	}
+	@Test
+	public void UpdatePersonTest() {
+		PersonDomainModel per1 = new PersonDomainModel();
+		per1.setFirstName("Firstname");
+		String UNAME = per1.getFirstName();
+		PersonDAL.updatePerson(per1);
+		assertEquals("Firstname", UNAME);
+
+	}
+	@Test
+	public void DeletePersonTest() {
+		PersonDomainModel per1 = new PersonDomainModel();
+		PersonDAL.addPerson(per1);
+		UUID per1UUID = UUID.randomUUID();
+		PersonDAL.deletePerson(per1UUID);
+		
+
+	}
+
 
 }

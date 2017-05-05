@@ -35,7 +35,8 @@ public class MainApp extends Application {
 
     private Stage primaryStage;
     private BorderPane rootLayout;
-    
+
+
     /**
      * The data as an observable list of Persons.
      */
@@ -46,12 +47,12 @@ public class MainApp extends Application {
      */
     public MainApp() {
         // Add some sample data
-    	
+
     	//TODO: ArrayList<PersonDomainModel> people should call getPersons() in PersonDAL
     	ArrayList<PersonDomainModel> people = PersonDAL.getPersons();
-    	
-    	
-    	
+
+
+
     	for (PersonDomainModel p: people)
     	{
     		personData.add(new Person(p.getFirstName(),p.getLastName(), p.getStreet(), p.getPostalCode(),p.getCity(), p.getBirthday()));
@@ -66,7 +67,7 @@ public class MainApp extends Application {
     public void start(Stage primaryStage) {
         this.primaryStage = primaryStage;
         this.primaryStage.setTitle("AddressApp");
-        
+
         // Set the application icon.
         this.primaryStage.getIcons().add(new Image("file:resources/images/address_book_32.png"));
 
@@ -128,12 +129,12 @@ public class MainApp extends Application {
             e.printStackTrace();
         }
     }
-    
+
     /**
      * Opens a dialog to edit details for the specified person. If the user
      * clicks OK, the changes are saved into the provided person object and true
      * is returned.
-     * 
+     *
      * @param person the person object to be edited
      * @return true if the user clicked OK, false otherwise.
      */
@@ -156,7 +157,7 @@ public class MainApp extends Application {
             PersonEditDialogController controller = loader.getController();
             controller.setDialogStage(dialogStage);
             controller.setPerson(person);
-            
+
             // Set the dialog icon.
             dialogStage.getIcons().add(new Image("file:resources/images/edit.png"));
 
@@ -169,7 +170,7 @@ public class MainApp extends Application {
             return false;
         }
     }
-    
+
     /**
      * Opens a dialog to show birthday statistics.
      */
@@ -185,7 +186,7 @@ public class MainApp extends Application {
             dialogStage.initOwner(primaryStage);
             Scene scene = new Scene(page);
             dialogStage.setScene(scene);
-            
+
             // Set the dialog icon.
             dialogStage.getIcons().add(new Image("file:resources/images/calendar.png"));
 
@@ -199,12 +200,12 @@ public class MainApp extends Application {
             e.printStackTrace();
         }
     }
-    
+
     /**
      * Returns the person file preference, i.e. the file that was last opened.
      * The preference is read from the OS specific registry. If no such
      * preference can be found, null is returned.
-     * 
+     *
      * @return
      */
     public File getPersonFilePath() {
@@ -220,7 +221,7 @@ public class MainApp extends Application {
     /**
      * Sets the file path of the currently loaded file. The path is persisted in
      * the OS specific registry.
-     * 
+     *
      * @param file the file or null to remove the path
      */
     public void setPersonFilePath(File file) {
@@ -237,11 +238,11 @@ public class MainApp extends Application {
             primaryStage.setTitle("AddressApp");
         }
     }
-    
+
     /**
      * Loads person data from the specified file. The current person data will
      * be replaced.
-     * 
+     *
      * @param file
      */
     public void loadPersonDataFromFile(File file) {
@@ -264,14 +265,14 @@ public class MainApp extends Application {
         	alert.setTitle("Error");
         	alert.setHeaderText("Could not load data");
         	alert.setContentText("Could not load data from file:\n" + file.getPath());
-        	
+
         	alert.showAndWait();
         }
     }
 
     /**
      * Saves the current person data to the specified file.
-     * 
+     *
      * @param file
      */
     public void savePersonDataToFile(File file) {
@@ -295,7 +296,7 @@ public class MainApp extends Application {
         	alert.setTitle("Error");
         	alert.setHeaderText("Could not save data");
         	alert.setContentText("Could not save data to file:\n" + file.getPath());
-        	
+
         	alert.showAndWait();
         }
     }
